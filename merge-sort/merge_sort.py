@@ -23,4 +23,20 @@ def merge(array1: np.ndarray, array2: np.ndarray) -> np.ndarray:
 
   return merged
 
-print("Merging [1, 6, 8] and [2, 4, 7]:\n", merge(np.array([1, 6, 8]), np.array([2, 4, 7])))
+def mergesort(array1: np.ndarray) -> np.ndarray:
+  if len(array1) <= 1:
+    return array1
+
+  mid = len(array1) // 2
+
+  left = mergesort(array1[:mid])
+  right = mergesort(array1[mid:])
+
+  return merge(left, right)
+
+userinput = input("Enter the array you want to sort with each element seperated by spaces:\n").split()
+
+try:
+  print("{", *mergesort(np.array([float(x) for x in userinput])), "}")
+except:
+  print("{", *mergesort(np.array([x for x in userinput], dtype=str)), "}")
