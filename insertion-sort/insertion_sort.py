@@ -1,6 +1,6 @@
 import numpy as np
 
-def insertion_sort(array: np.array) -> np.array:
+def insertion_sort(array: np.ndarray) -> np.ndarray:
     for i in range(len(array)):
         value = array[i]
         j = i - 1
