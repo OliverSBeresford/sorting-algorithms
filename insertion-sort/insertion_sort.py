@@ -10,4 +10,4 @@ def insertion_sort(array: np.array) -> np.array:
         array[j + 1] = value
     return array
 
-print(insertion_sort(np.array([8, 1, 8, 0, 9, 4, 1, 2, 3])))
+print(insertion_sort(np.array([int(x) for x in input("Enter the list, numbers separated by spaces:\n").split()])))
