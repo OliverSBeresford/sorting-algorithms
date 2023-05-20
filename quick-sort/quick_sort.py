@@ -10,7 +10,7 @@ def quicksort(array: np.ndarray, length) -> np.ndarray:
     j = length - 2
 
     while True:
-        while array[i] < pivot:
+        while array[i] <= pivot:
             i += 1
         while array[j] > pivot:
             j -= 1 
@@ -21,8 +21,8 @@ def quicksort(array: np.ndarray, length) -> np.ndarray:
         else:
             break
     
-    array[length -1], array[i] = array[i], array[length - 1]
+    array[length - 1], array[i] = array[i], array[length - 1]
 
     return array
 
-print(quicksort(np.array([5, 2, 1, 1.5, 6, 4, 3]), 7))
+print(quicksort(np.array([5, 2, 1, 1.5, 6, 4, 2]), 7))
