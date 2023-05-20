@@ -1,4 +1,5 @@
 import numpy as np
+import timeit
 
 def quicksort(array: np.ndarray, length) -> np.ndarray:
     if length < 2:
@@ -24,9 +25,12 @@ def quicksort(array: np.ndarray, length) -> np.ndarray:
     
     array[indPivot], array[i] = array[i], array[indPivot]
 
-    if 1 <= 0:
+    if i <= 0:
         return quicksort(array[i:], length - i)
     else:
-        return np.concatenate(quicksort(array[:i], i), quicksort(array[i:], length - i))
+        return np.concatenate((quicksort(array[:i], i), array[i:i+1], quicksort(array[i + 1:], indPivot - i)))
 
-print(quicksort(np.array([5, 2, 1, 1.5, 6, 4]), 6))
+def quicksort_wrapper():
+    return quicksort(np.array([10, 9, 2, 1, 3, 2, 5, 1, 4]), 9)
+
+print(quicksort_wrapper())
