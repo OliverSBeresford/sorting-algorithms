@@ -1,36 +1,34 @@
 import numpy as np
-import timeit
 
-def quicksort(array: np.ndarray, length) -> np.ndarray:
-    if length < 2:
-        return array
+def partition(array: np.ndarray, start: int, end: int) -> int:
+    pivot = array[end]
 
-    indPivot = length -1
-    pivot = array[indPivot]
-
-    i = 0
-    j = length - 2
+    i = start - 1
+    j = end
 
     while True:
-        while array[i] <= pivot and i < indPivot:
+        i += 1
+        while array[i] < pivot:
             i += 1
-        while array[j] > pivot and j >= 0:
-            j -= 1 
-        if i < j:
-            array[j], array[i] = array[i], array[j]
-            i += 1
+
+        j -= 1
+        while j and array[j] > pivot:
             j -= 1
-        else:
-            break
-    
-    array[indPivot], array[i] = array[i], array[indPivot]
 
-    if i <= 0:
-        return quicksort(array[i:], length - i)
-    else:
-        return np.concatenate((quicksort(array[:i], i), array[i:i+1], quicksort(array[i + 1:], indPivot - i)))
+        if i >= j:
+            array[i], array[end] = array[end], array[i]
+            return j
+        
+        array[i], array[j] = array[j], array[i]
 
-def quicksort_wrapper():
-    return quicksort(np.array([10, 9, 2, 1, 3, 2, 5, 1, 4]), 9)
+def quicksort(array, start, end):
+    if start < end:
+        pivot_index = partition(array, start, end)
+        quicksort(array, start, pivot_index)
+        quicksort(array, pivot_index + 1, end)
 
-print(quicksort_wrapper())
+arr = np.array([10, 12, 14, 25, 15, 26, 16, 5])
+startIndex = 0
+endIndex = len(arr) - 1
+quicksort(arr, startIndex, endIndex)
+print(arr)
