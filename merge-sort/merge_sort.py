@@ -1,4 +1,5 @@
 import numpy as np
+import timeit
 
 def merge(array1: np.ndarray, array2: np.ndarray) -> np.ndarray:
   array1Index = array2Index = 0
@@ -23,20 +24,26 @@ def merge(array1: np.ndarray, array2: np.ndarray) -> np.ndarray:
 
   return merged
 
-def mergesort(array1: np.ndarray) -> np.ndarray:
+def merge_sort(array1: np.ndarray) -> np.ndarray:
   if len(array1) <= 1:
     return array1
 
   mid = len(array1) // 2
 
-  left = mergesort(array1[:mid])
-  right = mergesort(array1[mid:])
+  left = merge_sort(array1[:mid])
+  right = merge_sort(array1[mid:])
 
   return merge(left, right)
 
 userinput = input("Enter the array you want to sort with each element seperated by spaces:\n").split()
 
 try:
-  print("{", *mergesort(np.array([float(x) for x in userinput])), "}")
+  print("{", *merge_sort(np.array([float(x) for x in userinput])), "}")
 except:
-  print("{", *mergesort(np.array([x for x in userinput], dtype=str)), "}")
+  print("{", *merge_sort(np.array([x for x in userinput], dtype=str)), "}")
+
+def wrapper():
+    arr = np.array([10, 12, 14, 25, 15, 26, 16, 5])
+    merge_sort(arr)
+
+print(timeit.timeit(wrapper))
