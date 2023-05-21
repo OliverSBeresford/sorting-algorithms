@@ -1,5 +1,4 @@
 import numpy as np
-import timeit
 
 def merge(array1: np.ndarray, array2: np.ndarray) -> np.ndarray:
   array1Index = array2Index = 0
@@ -41,9 +40,3 @@ try:
   print("{", *merge_sort(np.array([float(x) for x in userinput])), "}")
 except:
   print("{", *merge_sort(np.array([x for x in userinput], dtype=str)), "}")
-
-def wrapper():
-    arr = np.array([10, 12, 14, 25, 15, 26, 16, 5])
-    merge_sort(arr)
-
-print(timeit.timeit(wrapper))
