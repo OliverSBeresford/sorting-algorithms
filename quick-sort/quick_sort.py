@@ -27,8 +27,11 @@ def quicksort(array, start, end):
         quicksort(array, start, pivot_index)
         quicksort(array, pivot_index + 1, end)
 
-arr = np.array([10, 12, 14, 25, 15, 26, 16, 5])
-startIndex = 0
-endIndex = len(arr) - 1
-quicksort(arr, startIndex, endIndex)
-print(arr)
+userinput = input("Enter the array you want to sort with each element seperated by spaces:\n").split()
+try:
+    arr = np.array([float(x) for x in userinput])
+except:
+    arr = np.array([x for x in userinput], dtype=str)
+
+quicksort(arr, 0, len(userinput) - 1)
+print("{", *arr, "}")
