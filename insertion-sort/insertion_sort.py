@@ -10,4 +10,9 @@ def insertion_sort(array: np.ndarray) -> np.ndarray:
         array[j + 1] = value
     return array
 
-print(insertion_sort(np.array([int(x) for x in input("Enter the list, numbers separated by spaces:\n").split()])))
+userinput = input("Enter the array you want to sort with each element seperated by spaces:\n").split()
+
+try:
+  print("{", *insertion_sort(np.array([float(x) for x in userinput])), "}")
+except:
+  print("{", *insertion_sort(np.array([x for x in userinput], dtype=str)), "}")
